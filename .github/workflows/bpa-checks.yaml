@@ -27,7 +27,7 @@ on:
 jobs:
   bpa:
     # If you clicked Run workflow and checked skip_bpa=true, do nothing
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.skip_bpa) }}
+    if: ${{ env.DISABLE_RULE_IDS != '' }}
     runs-on: windows-latest
 
     env:
@@ -128,56 +128,55 @@ jobs:
           echo "PBI rules:     ${PBI_RULES}"
 
       - name: Setup Python (only used to toggle rules for demos)
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.disable_rule_ids != '' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.disable_rule_ids != '' }}id
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Temporarily disable selected rule IDs (demo)
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.disable_rule_ids != '' }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          import json, os
+  if: ${{ env.DISABLE_RULE_IDS != '' }}
+  shell: bash
+  run: |
+    set -euo pipefail
+    python - <<'PY'
+    import json, os
 
-          disable_raw = os.environ.get("DISABLE_RULE_IDS","")
-          ids = [x.strip() for x in disable_raw.split(",") if x.strip()]
-          if not ids:
-            raise SystemExit(0)
+    disable_raw = os.environ.get("DISABLE_RULE_IDS","")
+    ids = [x.strip() for x in disable_raw.split(",") if x.strip()]
+    if not ids:
+      raise SystemExit(0)
 
-          def patch(path: str, ids):
-            with open(path, "r", encoding="utf-8") as f:
-              data = json.load(f)
+    def patch(path: str, ids):
+      with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-            # PBI Inspector format: {"rules":[{"id":"REDUCE_PAGES","disabled":false}, ...]}
-            if isinstance(data, dict) and "rules" in data and isinstance(data["rules"], list):
-              for r in data["rules"]:
-                if r.get("id") in ids:
-                  r["disabled"] = True
+      if isinstance(data, dict) and "rules" in data and isinstance(data["rules"], list):
+        for r in data["rules"]:
+          if r.get("id") in ids:
+            r["disabled"] = True
 
-            # Tabular Editor format: [{"ID":"...","Disabled":false}, ...] OR {"BestPracticeRules":[...]}
-            if isinstance(data, list):
-              for r in data:
-                if r.get("ID") in ids:
-                  r["Disabled"] = True
-            if isinstance(data, dict) and "BestPracticeRules" in data and isinstance(data["BestPracticeRules"], list):
-              for r in data["BestPracticeRules"]:
-                if r.get("ID") in ids or r.get("Id") in ids or r.get("id") in ids:
-                  r["Disabled"] = True
+      if isinstance(data, list):
+        for r in data:
+          if r.get("ID") in ids:
+            r["Disabled"] = True
+      if isinstance(data, dict) and "BestPracticeRules" in data and isinstance(data["BestPracticeRules"], list):
+        for r in data["BestPracticeRules"]:
+          if r.get("ID") in ids or r.get("Id") in ids or r.get("id") in ids:
+            r["Disabled"] = True
 
-            with open(path, "w", encoding="utf-8") as f:
-              json.dump(data, f, indent=2)
+      with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
 
-            print(f"Disabled {ids} in {path}")
+      print(f"Disabled {ids} in {path}")
 
-          patch(os.environ["TABULAR_RULES_PATH"], ids)
-          patch(os.environ["PBI_RULES_PATH"], ids)
-          PY
-        env:
-          DISABLE_RULE_IDS: ${{ inputs.disable_rule_ids }}
-          TABULAR_RULES_PATH: ${{ steps.rules.outputs.tabularRules }}
-          PBI_RULES_PATH: ${{ steps.rules.outputs.pbiRules }}
+    patch(os.environ["TABULAR_RULES_PATH"], ids)
+    patch(os.environ["PBI_RULES_PATH"], ids)
+    PY
+  env:
+    DISABLE_RULE_IDS: ${{ env.DISABLE_RULE_IDS }}
+    TABULAR_RULES_PATH: ${{ steps.rules.outputs.tabularRules }}
+    PBI_RULES_PATH: ${{ steps.rules.outputs.pbiRules }}
+
 
       - name: Run Tabular Editor BPA (Semantic Models)
         shell: bash
