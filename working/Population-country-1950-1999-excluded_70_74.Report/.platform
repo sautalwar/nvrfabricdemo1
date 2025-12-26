@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Population-country-1950-1999-excluded_70_74"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7fc3ab45-16c1-9ff5-491c-93c928ffeb48"
+  }
+}
