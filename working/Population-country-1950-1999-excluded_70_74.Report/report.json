@@ -1,0 +1,37 @@
+{
+  "config": "{\"version\":\"5.69\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY25SU12\",\"type\":2,\"version\":{\"visual\":\"2.5.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"}}},\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"isReportAnnotationsDisabled\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]},\"creationSource\":\"DataExplore\"}",
+  "filters": "[]",
+  "layoutOptimization": 0,
+  "resourcePackages": [],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "0187995b454d4ab0cc0a",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"dataExploreChartVisualContainer\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":376,\"width\":1216,\"height\":312}}],\"singleVisual\":{\"visualType\":\"scatterChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Population-country-1950-1999.AgeGrp\",\"active\":true}],\"X\":[{\"queryRef\":\"Sum(Population-country-1950-1999.AgeGrpSpan)\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(Population-country-1950-1999.AgeGrpStart)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Population-country-1950-1999\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"AgeGrp\"},\"Name\":\"Population-country-1950-1999.AgeGrp\",\"NativeReferenceName\":\"AgeGrp\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"AgeGrpSpan\"}},\"Function\":0},\"Name\":\"Sum(Population-country-1950-1999.AgeGrpSpan)\",\"NativeReferenceName\":\"Sum of AgeGrpSpan\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"AgeGrpStart\"}},\"Function\":0},\"Name\":\"Sum(Population-country-1950-1999.AgeGrpStart)\",\"NativeReferenceName\":\"Sum of AgeGrpStart\"}]},\"autoSelectVisualType\":true,\"filterSortOrder\":3,\"hasDefaultSort\":true}}",
+          "filters": "[{\"name\":\"697b3833fbda3a2cb640\",\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Population-country-1950-1999\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"AgeGrp\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'70-74'\"}}]]}}}}}]},\"type\":\"Exclude\",\"howCreated\":4,\"filterExpressionMetadata\":{\"expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Population-country-1950-1999\"}},\"Property\":\"AgeGrp\"}}],\"cachedValueItems\":[{\"identities\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Population-country-1950-1999\"}},\"Property\":\"AgeGrp\"}},\"Right\":{\"Literal\":{\"Value\":\"'70-74'\"}}}}}],\"valueMap\":{\"0\":\"70-74\"}}]}}]",
+          "height": 312.00,
+          "width": 1216.00,
+          "x": 32.00,
+          "y": 376.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"dataExploreMatrixVisualContainer\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":32,\"width\":1216,\"height\":312}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"Population-country-1950-1999.AgeGrp\",\"active\":true}],\"Values\":[{\"queryRef\":\"Sum(Population-country-1950-1999.AgeGrpSpan)\"},{\"queryRef\":\"Sum(Population-country-1950-1999.AgeGrpStart)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Population-country-1950-1999\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"AgeGrp\"},\"Name\":\"Population-country-1950-1999.AgeGrp\",\"NativeReferenceName\":\"AgeGrp\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"AgeGrpSpan\"}},\"Function\":0},\"Name\":\"Sum(Population-country-1950-1999.AgeGrpSpan)\",\"NativeReferenceName\":\"Sum of AgeGrpSpan\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"AgeGrpStart\"}},\"Function\":0},\"Name\":\"Sum(Population-country-1950-1999.AgeGrpStart)\",\"NativeReferenceName\":\"Sum of AgeGrpStart\"}]},\"autoSelectVisualType\":false,\"filterSortOrder\":3}}",
+          "filters": "[{\"name\":\"697b3833fbda3a2cb640\",\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Population-country-1950-1999\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"AgeGrp\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'70-74'\"}}]]}}}}}]},\"type\":\"Exclude\",\"howCreated\":4,\"filterExpressionMetadata\":{\"expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Population-country-1950-1999\"}},\"Property\":\"AgeGrp\"}}],\"cachedValueItems\":[{\"identities\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Population-country-1950-1999\"}},\"Property\":\"AgeGrp\"}},\"Right\":{\"Literal\":{\"Value\":\"'70-74'\"}}}}}],\"valueMap\":{\"0\":\"70-74\"}}]}}]",
+          "height": 312.00,
+          "width": 1216.00,
+          "x": 32.00,
+          "y": 32.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
