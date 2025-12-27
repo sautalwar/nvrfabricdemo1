@@ -129,7 +129,7 @@ jobs:
         with:
           python-version: "3.11"
 
-            - name: Temporarily disable selected rule IDs (demo)
+      - name: Temporarily disable selected rule IDs (demo)
         if: ${{ env.DISABLE_RULE_IDS != '' }}
         shell: bash
         env:
